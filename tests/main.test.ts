@@ -19,14 +19,28 @@ function setupTest(): void {
             .get('/bytes/35')
             .reply(200)
     });
-    
-    beforeEach(async function(){
+
+    beforeEach(async function () {
         await rmRF(cachePath);
         await rmRF(tempPath);
     });
 
-    afterAll(async function(){
+    afterAll(async function () {
         await rmRF(tempPath);
         await rmRF(cachePath);
+    });
+
+    describe('Test Functions', () => {
+        setupTest();
+        it('Will give the tool path if already set', async () => {
+            const downPath: string = await downloadTool(
+                'http://example.com/bytes/35'
+            );
+            await cacheFile(downPath, 'aws', 'aws', '1.1.0');
+            const toolPath: string = find('aws', '1.1.0');
+            const cachedPath = await _installTool();
+            expect(cachedPath).toBe(toolPath);
+        });
+
     });
 }
