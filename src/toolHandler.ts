@@ -60,4 +60,31 @@ export class DownloadExtractInstall {
 
         return installedVersion;
     }
+
+    public async downloadFile(): Promise<string> {
+        const filePath = await downloadTool(this.downloadUrl);
+        const destPath = `${filePath}${this.fileType}`;
+
+        await mv(filePath, destPath);
+        return destPath;
+    }
+
+    public async extractFile(filePath: string): Promise<string> {
+        const extractDir = path.dirname(filePath);
+        if (process.platform === 'linux') {
+            await exec(`unzip ${filePath}`, ['-d', extractDir]);
+            return extractDir
+        }
+        return await extractZip(filePath, extractDir);
+    }
+
+    public async cacheTool(installedBinary: string): Promise<string> {
+        const installedVersion = await this._getVersion(installedBinary)
+        const cachedPath = await cacheDir(path.parse(installedBinary).dir, 'aws', installedVersion)
+        return cachedPath
+    }
+
+    public async installPackage(installCommand: string, installArgs: string[]): Promise<number> {
+        return await exec(installCommand, installArgs);
+    }
 }
