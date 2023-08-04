@@ -1,0 +1,9 @@
+name: 'AWS cli install action'
+description: 'Installs AWS CLI'
+author: 'chrislennon'
+branding:
+  icon: 'terminal'
+  color: 'gray-dark'
+runs:
+  using: 'node12'
+  main: 'lib/main.js'
