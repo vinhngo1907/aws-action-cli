@@ -1,0 +1,16 @@
+{
+    "name": "aws-price-scraper",
+    "version": "1.0.0",
+    "description": "aws, pricing",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "Koo Kuu <vinhtrungngo1907@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "axios": "^0.21.1",
+        "jsdom": "^16.5.3"
+    }
+}
