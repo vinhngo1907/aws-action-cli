@@ -14,7 +14,7 @@
       "Puppeteer"
     ],
     "author": "Vinh Ngo",
-    "license": "ISC",
+    "license": "MIT",
     "dependencies": {
       "@aws-sdk/client-cloudwatch": "^3.388.0",
       "@aws-sdk/client-cloudwatch-logs": "^3.388.0",
